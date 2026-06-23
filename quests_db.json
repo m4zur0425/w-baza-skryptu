@@ -1,1 +1,14 @@
-
+{
+  "quests": {
+    "11": {
+      "name": "Wprowadzenie (Zbieranie tytoniu)",
+      "solution": "Załóż opaskę, którą dostałeś. Praca 'Zbieranie tytoniu' znajduje się wokół startowego saloonu. Ustaw pracę na 15 sekund.",
+      "items_needed": "1x Liście tytoniu"
+    },
+    "544": {
+      "name": "Złoto głupców",
+      "solution": "Musisz mieć założony kilof w slocie produktu. Idź do punktu zleceniodawcy 'Wydrążony pień'.",
+      "items_needed": "Brak"
+    }
+  }
+}
