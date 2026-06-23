@@ -2,31 +2,27 @@ name: Deploy
 
 on:
   release:
-    types:
-      - published
+    types: [published]
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'npm'
-      
+          node-version: 24
       - name: Download release assets
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p dist
-          # Użycie GitHub CLI jest bezpieczniejsze, czystsze i obsługuje prywatne repozytoria
           gh release download ${{ github.event.release.tag_name }} --dir dist --pattern "*.user.js"
-      
       - name: Deploy
         env:
           TW_CALC_API_KEY: ${{ secrets.TW_CALC_API_KEY }}
           REF: ${{ github.ref }}
         run: |
-          chmod +x ./ci/deploy.sh
-          ./ci/deploy.sh
+          chmod +x ./ci/deploy.sh && ./ci/deploy.sh
